@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html{
+
+  background-color: rgb(112, 106, 106);
+  color: white;
+}
+
+#imagen{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 20px;
+  border-radius: 100%;
+  background-color: rgb(255, 0, 0);
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+}
+
+#linea{
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid white;
+}
