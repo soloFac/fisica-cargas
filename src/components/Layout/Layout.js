@@ -1,12 +1,15 @@
-import React from 'react'
-import { fisica } from '../fisica'
+import React, { useEffect } from 'react'
+import { Grilla } from './../grilla'
 
 export const Layout = ({ cargas }) => {
-  fisica()
+  useEffect(() => {
+    Grilla()
+  }, [])
+
   return (
-    <div>
-      <div><img id='imagen' src='img/cruzroja.png' alt='' /></div>
-      <canvas id='linea' width='1080' height='657' style='border:0px solid #d3d3d3;'/>
+    <div id='principal'>
+      {/* <div><img id='imagen' src='img/cruzroja.png' alt='' /></div> */}
+      <canvas id='linea' width={window.innerWidth} height={window.innerHeight} style={{ border: '0px solid #d3d3d3' }}/>
     </div>
   )
 }
