@@ -1,26 +1,27 @@
 import React from 'react'
 
-export const Grilla = () => {
-  const principal = document.querySelector('html')
+export const Grilla = (vw, vh, espaciado) => {
+  const canvas = document.querySelector('#linea')
 
-  console.log('sdf')
+  dibujarGrilla(canvas, vw, vh, espaciado)
+}
 
-  const espaciado = 30
-  const canvas = document.getElementById('linea')
+const dibujarGrilla = (canvas, vw, vh, espaciado) => {
   const ctx = canvas.getContext('2d')
-  canvas.width = window.innerWidth
-  ctx.moveTo(540, 328)
-  ctx.lineTo(544, 100)
-  ctx.strokeStyle = '#ffffff'
+  // defino el ancho del canvas
+  canvas.width = vw
+  ctx.strokeStyle = '#BFBFBF'
   ctx.stroke()
 
-  for (let x = 0; x <= 1360; x += espaciado) {
+  for (let x = 0; x <= vw; x += espaciado) {
     ctx.moveTo(x, 0)
-    ctx.lineTo(x, window.innerHeight)
+    ctx.lineTo(x, vh)
+  }
+  for (let y = 0; y <= vh; y += espaciado) {
+    ctx.moveTo(0, y)
+    // define el largo de las lineas horizontales
+    ctx.lineTo(vw, y)
   }
 
-  for (let y = 0; y <= 700; y += espaciado) {
-    ctx.moveTo(0, y)
-    ctx.lineTo(window.innerWidth, y)
-  }
+  ctx.stroke()
 }

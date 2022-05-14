@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Layout } from './components/Layout/Layout'
 
 function App () {
@@ -6,11 +6,9 @@ function App () {
 
   return (
     <section>
-      <article>
-        <Layout
-          cargas={cargas}
-        />
-      </article>
+      <Layout
+        cargas={cargas}
+      />
     </section>
   )
 }
