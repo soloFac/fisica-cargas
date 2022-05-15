@@ -10,7 +10,7 @@ const dibujarGrilla = (canvas, vw, vh, espaciado) => {
   const ctx = canvas.getContext('2d')
   // defino el ancho del canvas
   canvas.width = vw
-  ctx.strokeStyle = '#BFBFBF'
+  ctx.strokeStyle = '#D9D9D9'
   ctx.stroke()
 
   for (let x = 0; x <= vw; x += espaciado) {
