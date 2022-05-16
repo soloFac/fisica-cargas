@@ -11,10 +11,10 @@ export const Layout = ({ cargas, setCargas, vwCanvas }) => {
   const setPos = (carga, x, y) => {
     const { id, size, signo } = carga
     const pos = { x, y }
-    const ncargas = cargas.filter(c => ((c.id !== carga.id) ? c : null))
-    ncargas.push({ id, signo, size, pos })
+    const cargasActualizadas = cargas.filter(c => ((c.id !== carga.id) ? c : null))
+    cargasActualizadas.push({ id, signo, size, pos })
     setCargas(
-      ncargas
+      cargasActualizadas
     )
   }
   // Cuando se actualice el ancho de la pantalla
