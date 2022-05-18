@@ -50,7 +50,7 @@ export const Layout = ({ cargas, setCargas, vwCanvas }) => {
       {/* <div><img id='imagen' src='img/cruzroja.png' alt='' /></div> */}
       <canvas
         id='linea'
-        width={width}
+        width={width}ñ
         height={window.innerHeight}
         // style={{ border: '0px solid #d3d3d3' }}
         // Cuando se ingresa una nueva carga
