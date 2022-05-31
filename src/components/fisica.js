@@ -100,7 +100,7 @@
 //   // window.alert('hola')
 //   })
 
-  // $('html').mousemove(function(){
-  //     console.log('hola')
-  // })
-}
+// $('html').mousemove(function(){
+//     console.log('hola')
+// })
+// }

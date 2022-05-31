@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Form from './components/Interface/Form'
-import { Layout } from './components/Layout/Layout'
+import Interface from './components/Interface/Interface'
+import Layout from './components/Layout/Layout'
 
 function App () {
+  // Me dice que porcentaje del ancho del vw va a ocupar el Canvas
+  // el resto queda para el formulario
   const vwCanvas = 0.7
 
   const [cargas, setCargas] = useState([
@@ -18,7 +20,7 @@ function App () {
     {
       id: 1,
       signo: 'negativa',
-      size: 30,
+      size: 20,
       pos: {
         x: 180,
         y: 150
@@ -38,10 +40,7 @@ function App () {
         setCargas={setCargas}
         vwCanvas={vwCanvas}
       />
-      <Form
-        cargas={cargas}
-        setCargas={setCargas}
-      />
+      <Interface />
     </section>
   )
 }

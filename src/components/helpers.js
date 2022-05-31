@@ -18,3 +18,11 @@ export const centerElement = (element, centerX, centerY) => {
   element.style.left = centerX + 'px'
   element.style.top = centerY + 'px'
 }
+
+// export const CampoElectrico = (cargas, punto) => {
+
+// }
+
+// export const Distancia = (q1, q2) => {
+
+// }
