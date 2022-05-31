@@ -15,7 +15,9 @@ function App () {
       pos: {
         x: 10,
         y: 10
-      }
+      },
+      valor: 250,
+      potencia: 2
     },
     {
       id: 1,
@@ -24,7 +26,9 @@ function App () {
       pos: {
         x: 180,
         y: 150
-      }
+      },
+      valor: 210,
+      potencia: 3
     }
   ])
 
