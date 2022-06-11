@@ -1,8 +1,17 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import { v4 as uuid } from 'uuid-sequential'
 
-const Form = ({ setCargas }) => {
+const Form = ({ cargas, setCargas }) => {
+  const getLastId = () => {
+    if (cargas.length === 0) {
+      return 1
+    } else {
+      return cargas[cargas.length - 1]?.id + 1
+    }
+  }
+
+  console.log(getLastId())
+
   const [carga, setCarga] = useState({
     id: '',
     signo: 'positiva',
@@ -28,11 +37,13 @@ const Form = ({ setCargas }) => {
   const agregarCarga = e => {
     e.preventDefault()
 
-    carga.id = uuid()
+    // carga.id = uuid()
+    carga.id = getLastId()
     if (carga.id === '') console.log('El id de la carga no puede estar vacio. Comuniquese con el administrador')
 
     if (carga.valor === '' || carga.potencia === '' || carga.signo === '') {
-      alert('Ningun campo puede ser vacio')
+      alert('Ningun campo puede estar vacio')
+      return null
     }
 
     setCargas((prevState) => {

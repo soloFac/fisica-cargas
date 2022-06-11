@@ -4,13 +4,9 @@ import { setCharge } from '../helpers'
 
 // Este sera un componente que contendra la informacion de las cargas para ser mostrada en Interface
 const InfoCarga = ({ cargas, setCargas }) => {
-  const imgNegativa = require('./../../img/negativa.png')
-  const imgPositiva = require('./../../img/positiva.png')
-
   const changeSign = (e, carga) => {
-    const disable = e.target.className.includes('disable')
     // Si no esta activada la cambio
-    const { id, signo, valor, potencia, pos } = carga
+    const { signo } = carga
     if (signo === 'positiva') {
       carga.signo = 'negativa'
       setCharge(carga, setCargas)
@@ -21,11 +17,11 @@ const InfoCarga = ({ cargas, setCargas }) => {
   }
 
   return (
-    <div>
+    <Container>
       {cargas.map(carga => {
         console.log(carga.pos)
         return (
-          <Container key={carga.id}>
+          <CargaContainer key={carga.id}>
             <h3>Carga: {carga.id}</h3>
             <div>
               <p>Pos x: <span>{carga.pos.x}</span></p>
@@ -39,9 +35,9 @@ const InfoCarga = ({ cargas, setCargas }) => {
                 onClick={(e) => changeSign(e, carga)}
               />
             </CargasImagen>
-          </Container>)
+          </CargaContainer>)
       })}
-    </div>
+    </Container>
   )
 }
 
@@ -58,6 +54,13 @@ const CargasImagen = styled.div`
 `
 
 const Container = styled.div`
+  overflow-y: scroll;
+  height: 60vh;
+  background-color: #D8EBFC;
+`
+
+const CargaContainer = styled.div`
+  position: relative;
   background-color: #D8EBFC;
   color: lightcoral;
   h3{

@@ -11,6 +11,7 @@ const Interface = ({ cargas, setCargas }) => {
     // Los datos del calculo de la fuerza, campo electrico y potencial
     <Container>
       <Form
+        cargas={cargas}
         setCargas={setCargas}
       />
       <InfoCarga
