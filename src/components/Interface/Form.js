@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from 'uuid-sequential'
 
 const Form = ({ setCargas }) => {
   const [carga, setCarga] = useState({
     id: '',
     signo: 'positiva',
     valor: '',
+    potencia: '',
     size: '20',
     pos: {
       x: '0',
@@ -14,7 +15,7 @@ const Form = ({ setCargas }) => {
     }
   })
 
-  const { signo } = carga
+  const { signo, valor, potencia } = carga
 
   const getData = ({ target }) => {
     setCarga({
@@ -41,6 +42,19 @@ const Form = ({ setCargas }) => {
         carga
       ]
     })
+
+    // Reseteo el estado
+    setCarga({
+      id: '',
+      signo: 'positiva',
+      valor: '',
+      potencia: '',
+      size: '20',
+      pos: {
+        x: '0',
+        y: '0'
+      }
+    })
   }
 
   return (
@@ -52,6 +66,7 @@ const Form = ({ setCargas }) => {
         <Input
           type='number'
           name='valor'
+          value={valor}
           onChange={getData}
         />
       </div>
@@ -60,7 +75,8 @@ const Form = ({ setCargas }) => {
         <label>Orden de Magnitud</label>
         <Input
           type='number'
-          name='orden'
+          name='potencia'
+          value={potencia}
           onChange={getData}
         />
       </div>
