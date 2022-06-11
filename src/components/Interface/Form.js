@@ -1,53 +1,73 @@
 import React, { useState } from 'react'
+import styled from '@emotion/styled'
+import { v4 as uuid } from 'uuid'
 
-const Form = () => {
+const Form = ({ setCargas }) => {
   const [carga, setCarga] = useState({
+    id: '',
     signo: 'positiva',
-    size: '',
+    valor: '',
+    size: '20',
     pos: {
-      x: '',
-      y: ''
+      x: '0',
+      y: '0'
     }
   })
 
   const { signo } = carga
 
-  const getData = (e) => {
+  const getData = ({ target }) => {
     setCarga({
       ...carga,
-      [e.target.name]: e.target.value
+      [target.name]: target.value
+    })
+  }
+
+  // Validar Campos vacios
+  const agregarCarga = e => {
+    e.preventDefault()
+
+    carga.id = uuid()
+    if (carga.id === '') console.log('El id de la carga no puede estar vacio. Comuniquese con el administrador')
+
+    if (carga.valor === '' || carga.potencia === '' || carga.signo === '') {
+      alert('Ningun campo puede ser vacio')
+    }
+
+    setCargas((prevState) => {
+      console.log(prevState)
+      return [
+        ...prevState,
+        carga
+      ]
     })
   }
 
   return (
-    <form
-      style={{
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column'
-      }}
+    <Formulario
+      onSubmit={e => agregarCarga(e)}
     >
       <div>
         <label>Valor</label>
-        <input
+        <Input
           type='number'
           name='valor'
           onChange={getData}
-        ></input>
+        />
       </div>
 
       <div>
         <label>Orden de Magnitud</label>
-        <input
+        <Input
           type='number'
           name='orden'
           onChange={getData}
-        ></input>
+        />
       </div>
 
       <div>
         <label>Signo</label>
-        <select
+        <Select
           name='signo'
           value={signo}
           onChange={getData}
@@ -62,11 +82,39 @@ const Form = () => {
           >
             negativa
           </option>
-        </select>
+        </Select>
       </div>
-    </form>
+
+      <button>Agregar Carga</button>
+    </Formulario>
 
   )
 }
+
+const Formulario = styled.form`
+  background-color: #1C4AA6;
+  /* width: '100%'; */
+  /* display: 'flex'; */
+  /* flex-direction: 'row'; */
+`
+
+const Input = styled.input`
+  padding: 8px;
+  border: 1px solid rgb(146, 146, 146);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+`
+const Select = styled.select`
+   padding: .2em;
+  font-size: 20px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+`
 
 export default Form

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Grilla } from './Grilla'
 import Carga from './Carga'
 import './Layout.css'
+import { setCharge } from '../helpers'
 
 const Layout = ({ cargas, setCargas, vwCanvas }) => {
   const espaciado = 30
@@ -9,14 +10,10 @@ const Layout = ({ cargas, setCargas, vwCanvas }) => {
   const [width, setWidth] = useState(window.innerWidth * vwCanvas)
 
   const setPos = (carga, x, y) => {
-    const { id, size, signo } = carga
-    const pos = { x, y }
-    // actualiza la posicion de la carga que esta siendo movida.
-    const cargasActualizadas = cargas.filter(c => ((c.id !== carga.id) ? c : null))
-    cargasActualizadas.push({ id, signo, size, pos })
-    setCargas(
-      cargasActualizadas
-    )
+    carga.pos.x = x
+    carga.pos.y = y
+
+    setCharge(carga, setCargas)
   }
   // defino el nuevo ancho del canvas
   window.addEventListener('resize', () => {

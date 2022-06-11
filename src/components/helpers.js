@@ -26,3 +26,23 @@ export const centerElement = (element, centerX, centerY) => {
 // export const Distancia = (q1, q2) => {
 
 // }
+
+function ordernarId (a, b) {
+  if (a.id > b.id) {
+    return 1
+  }
+  if (a.id < b.id) {
+    return -1
+  }
+  return 0
+}
+
+export const setCharge = (carga, setCargas) => {
+  setCargas((prevState) => {
+    const cargas = prevState.filter(c => ((c.id !== carga.id) ? c : null))
+    cargas.push(carga)
+    cargas.sort(ordernarId)
+    return (cargas)
+  })
+  console.log(carga)
+}

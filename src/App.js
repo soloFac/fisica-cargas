@@ -44,7 +44,10 @@ function App () {
         setCargas={setCargas}
         vwCanvas={vwCanvas}
       />
-      <Interface />
+      <Interface
+        cargas={cargas}
+        setCargas={setCargas}
+      />
     </section>
   )
 }

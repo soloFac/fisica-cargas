@@ -14,32 +14,6 @@ html{
   background-color: #172140;
 }
 
-form{
-  background-color: #1C4AA6;
-}
-
-form input {
-  /*box-shadow: 2px 2px 5px rgb(255, 255, 255);
-  */
-  padding: 8px;
-  border: 1px solid rgb(146, 146, 146);
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-}
-
-form select{
-  padding: .2em;
-  font-size: 20px;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-}
-
 #imagen{
   position: absolute;
   top: 0;
