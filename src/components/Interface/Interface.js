@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 
 import Form from './Form'
 import InfoCarga from './InfoCarga'
+import Resultados from './Resultados'
 
 const Interface = ({ cargas, setCargas }) => {
   return (
@@ -18,6 +19,10 @@ const Interface = ({ cargas, setCargas }) => {
         cargas={cargas}
         setCargas={setCargas}
       />
+
+      <Resultados
+
+      />
     </Container>
   )
 }
@@ -25,6 +30,9 @@ const Interface = ({ cargas, setCargas }) => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 30vw;
+  height: 100vh;
+  background-color: beige;
 `
 
 export default Interface

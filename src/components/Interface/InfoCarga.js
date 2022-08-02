@@ -4,7 +4,7 @@ import { setCharge } from '../helpers'
 
 // Este sera un componente que contendra la informacion de las cargas para ser mostrada en Interface
 const InfoCarga = ({ cargas, setCargas }) => {
-  const changeSign = (e, carga) => {
+  const changeSign = (carga) => {
     // Si no esta activada la cambio
     const { signo } = carga
     if (signo === 'positiva') {
@@ -32,7 +32,7 @@ const InfoCarga = ({ cargas, setCargas }) => {
             <CargasImagen>
               <CargaImg
                 src={require(`./../../img/${carga.signo}.png`)}
-                onClick={(e) => changeSign(e, carga)}
+                onClick={() => changeSign(carga)}
               />
             </CargasImagen>
           </CargaContainer>)

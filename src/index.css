@@ -12,6 +12,10 @@ html{
 
 #principal{
   background-color: #172140;
+  position: relative;
+  width: 70vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 #imagen{

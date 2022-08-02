@@ -29,6 +29,17 @@ function App () {
       },
       valor: 210,
       potencia: 3
+    },
+    {
+      id: 2,
+      signo: 'positiva',
+      size: 20,
+      pos: {
+        x: 480,
+        y: 250
+      },
+      valor: 210,
+      potencia: 3
     }
   ])
 
