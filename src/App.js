@@ -24,23 +24,24 @@ function App () {
       signo: 'negativa',
       size: 20,
       pos: {
-        x: 180,
-        y: 150
-      },
-      valor: 210,
-      potencia: 3
-    },
-    {
-      id: 2,
-      signo: 'positiva',
-      size: 20,
-      pos: {
-        x: 480,
-        y: 250
+        x: 502,
+        y: 222
       },
       valor: 210,
       potencia: 3
     }
+    // ,
+    // {
+    //   id: 2,
+    //   signo: 'positiva',
+    //   size: 20,
+    //   pos: {
+    //     x: 480,
+    //     y: 250
+    //   },
+    //   valor: 210,
+    //   potencia: 3
+    // }
   ])
 
   return (

@@ -1,4 +1,3 @@
-
 export const calcDistancia = (x, y) => {
   // const centerX = Math.round(window.innerWidth / 2)
   // const centerY = Math.round(window.innerHeight / 2)
@@ -21,8 +20,8 @@ export const calcFuerzaVectorial = (q1, q2) => {
   const F = calcMagnitudFuerza(q1, q2, calcDistancia)
   // Calculo el angulo
   const alfa = Math.atan(distY / distX)
-  const Fx = distX / Math.cos(alfa)
-  const Fy = distY / Math.sin(alfa)
+  const Fx = F * Math.cos(alfa)
+  const Fy = F * Math.sin(alfa)
   return [Fx, Fy]
 }
 
