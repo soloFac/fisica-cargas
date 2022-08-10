@@ -11,24 +11,42 @@ function App () {
     {
       id: 0,
       signo: 'positiva',
+      // Elimino el tamaño a modo representativo de la cantidad de carga ya que se puede tender
+      // a confundir el concepto de carga puntual
+      // Para todas el tamaño sera de 20
       size: 20,
       pos: {
-        x: 10,
-        y: 10
+        x: 80,
+        y: 50
       },
+      f: {
+        x: 0,
+        y: 0
+      },
+      // valor de la carga
       valor: 250,
-      potencia: 2
+      // solamente podra ser micro o nano Coulomb, es decir -6 o -9
+      potencia: -6
     },
     {
       id: 1,
       signo: 'negativa',
+      // Elimino el tamaño a modo representativo de la cantidad de carga ya que se puede tender
+      // a confundir el concepto de carga puntual
+      // Para todas el tamaño sera de 20
       size: 20,
       pos: {
         x: 502,
         y: 222
       },
+      f: {
+        x: 0,
+        y: 0
+      },
+      // valor de la carga
       valor: 210,
-      potencia: 3
+      // solamente podra ser micro o nano Coulomb, es decir -6 o -9
+      potencia: -9
     }
     // ,
     // {

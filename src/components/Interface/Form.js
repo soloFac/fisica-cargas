@@ -54,7 +54,7 @@ const Form = ({ cargas, setCargas }) => {
       ]
     })
 
-    // Reseteo el estado
+    // Reseteo el estado del Formulario
     setCarga({
       id: '',
       signo: 'positiva',

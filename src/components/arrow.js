@@ -2,22 +2,26 @@
 import React from 'react'
 
 // Dibujar un triangulo
-export const drawVector = () => {
+export const drawVector = (c1, Fx1, Fy1) => { // Deberia recibir un factor de conversion para normalizar los vectores
   const canvas = document.querySelector('#linea')
   if (canvas.getContext) {
     const ctx = canvas.getContext('2d')
 
     // este sera el largo o alto definido para cada linea de la flecha
 
+    // el ancho de cada imagen de la carga es de 20px
     const hip = Math.sqrt(20 ** 2 + 20 ** 2)
     // Ya que la posicion inicial de la imagen es su esquina, no el centro
-    const dist = hip / 2
+    const distImg = hip / 2
 
-    const pos0X = 50 + dist
-    const pos0Y = 420 + dist
+    const pos0X = c1.pos.x + distImg - 4
+    const pos0Y = c1.pos.y + distImg - 4
 
-    const Fx = 275
-    const Fy = 155
+    const Fx = Fx1 * (10 ** 7)
+    const Fy = Fy1 * (10 ** 7) * -1
+    console.log(Fx, Fy)
+    // const Fx = 85
+    // const Fy = -80
 
     const posX = pos0X + Fx
     const posY = pos0Y + Fy
@@ -30,18 +34,28 @@ export const drawVector = () => {
 
     // Draw the line - arrow body
     ctx.beginPath()
-    ctx.lineWidth = 4
+    ctx.lineWidth = 2
     ctx.strokeStyle = 'white'
     ctx.moveTo(pos0X, pos0Y)
     ctx.lineTo(posX, posY)
     ctx.stroke()
 
+    // En el caso en que la posX era mayor a la posicion inicial, la felcha ser invertia,
+    // por lo tanto le sumo 180° al angulo para solucionarlo
+    let anguloAux = 0
+    if (posX < pos0X) {
+      anguloAux = 180
+    }
+
+    let flechaX
+    let flechaY
+
     // curve top arrow
     ctx.beginPath()
     ctx.moveTo(posX, posY)
     ctx.strokeStyle = 'white'
-    let flechaX = posX - (Math.sin(45 * (Math.PI / 180) - alfa) * h)
-    let flechaY = posY - (Math.cos(45 * (Math.PI / 180) - alfa) * h)
+    flechaX = posX - (Math.sin((45 + anguloAux) * (Math.PI / 180) - alfa) * h)
+    flechaY = posY - (Math.cos((45 + anguloAux) * (Math.PI / 180) - alfa) * h)
     ctx.lineTo(flechaX, flechaY)
     ctx.stroke()
 
@@ -49,8 +63,8 @@ export const drawVector = () => {
     ctx.beginPath()
     ctx.moveTo(posX, posY)
     ctx.strokeStyle = 'white'
-    flechaX = posX - (Math.sin(135 * (Math.PI / 180) - alfa) * h)
-    flechaY = posY - (Math.cos(135 * (Math.PI / 180) - alfa) * h)
+    flechaX = posX - (Math.sin((135 + anguloAux) * (Math.PI / 180) - alfa) * h)
+    flechaY = posY - (Math.cos((135 + anguloAux) * (Math.PI / 180) - alfa) * h)
     ctx.lineTo(flechaX, flechaY)
     ctx.stroke()
   }

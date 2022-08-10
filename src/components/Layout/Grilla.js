@@ -6,6 +6,7 @@ export const Grilla = (vw, vh, espaciado) => {
   dibujarGrilla(canvas, vw, vh, espaciado)
 }
 
+// Dibujo la grilla, es decir el cuadriculado que se muestra por pantalla
 const dibujarGrilla = (canvas, vw, vh, espaciado) => {
   const ctx = canvas.getContext('2d')
   // defino el ancho del canvas

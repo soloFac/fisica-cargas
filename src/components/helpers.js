@@ -8,35 +8,69 @@ export const calcDistancia = (x, y) => {
 }
 
 // Me permite calcular la fuerza entre un par de cargas
-export const calcMagnitudFuerza = (q1, q2, d) => {
+export const calcMagnitudFuerza = (c1, c2, d) => {
+  const q1 = c1.valor
+  const q2 = c2.valor
+
+  const potq1 = c1.potencia
+  const potq2 = c2.potencia
   // Constante de Fuerza
   const k = 8.987551787368176 * 10 ** 9
-  return ((k * Math.abs(q1 * q2)) / (d ** 2))
+  const fuerza = (k * Math.abs(q1 * q2) * (10 ** (potq1 + potq2))) / (d ** 2)
+  console.log('---fuerza--- ', fuerza)
+  return fuerza
+}
+
+// Retorna la distancias como un arreglo de elementos
+// Obtengo la distancia entre las cargas, x e y
+export const Distancias = (c1, c2) => {
+  const distX = c1.pos.x - c2.pos.x
+  const distY = c1.pos.y - c2.pos.y
+
+  return [distX, distY]
 }
 
 // Todavia no esta finalizado
-export const calcFuerzaVectorial = (q1, q2) => {
-  const { distX, distY } = Distancias(q1, q2)
-  const F = calcMagnitudFuerza(q1, q2, calcDistancia)
+export const calcVectoresF = (c1, c2) => {
+  const [distX, distY] = Distancias(c1, c2)
+  const F = calcMagnitudFuerza(c1, c2, calcDistancia(Math.abs(distX), Math.abs(distY)))
+  console.log('Valor de F: ', F)
   // Calculo el angulo
   const alfa = Math.atan(distY / distX)
-  const Fx = F * Math.cos(alfa)
-  const Fy = F * Math.sin(alfa)
+  let Fx = F * Math.abs(Math.cos(alfa))
+  let Fy = F * Math.abs(Math.sin(alfa))
+
+  console.log('Fx: ', Fx, ' Fy: ', Fy)
+  console.log('distX: ', distX, 'distY: ', distY)
+  // Determino el signo de Fx y Fy
+  if (c1.signo === c2.signo) {
+    if (distX < 0 && distY < 0) {
+      Fx = -1 * Fx
+      console.log('cambio fx: ', Fx)
+    } else if (distX < 0 && distY > 0) {
+      Fx = -1 * Fx
+      Fy = -1 * Fy
+    } else if (distX > 0 && distY > 0) {
+      Fy = -1 * Fy
+    }
+  } else {
+    if (distX < 0 && distY < 0) {
+      Fy = -1 * Fy
+    } else if (distX > 0 && distY < 0) {
+      Fx = -1 * Fx
+      Fy = -1 * Fy
+    } else if (distX > 0 && distY > 0) {
+      Fx = -1 * Fx
+    }
+  }
+
+  // retorno solamente la Fx y Fy de q1
   return [Fx, Fy]
 }
 
 // export const CampoElectrico = (cargas, punto) => {
 
 // }
-
-// Retorna la distancias como un arreglo de elementos
-// Obtengo la distancia entre las cargas, x e y
-export const Distancias = (q1, q2) => {
-  const distX = q1.pos.x - q2.pos.x
-  const distY = q1.pos.y - q2.pos.y
-
-  return [distX, distY]
-}
 
 function ordernarId (a, b) {
   if (a.id > b.id) {

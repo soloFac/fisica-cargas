@@ -4,6 +4,7 @@ import { setCharge } from '../helpers'
 
 // Este sera un componente que contendra la informacion de las cargas para ser mostrada en Interface
 const InfoCarga = ({ cargas, setCargas }) => {
+  // Cuando se realiza click sobre la carga, le cambio el signo
   const changeSign = (carga) => {
     // Si no esta activada la cambio
     const { signo } = carga

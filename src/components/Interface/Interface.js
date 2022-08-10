@@ -4,12 +4,12 @@ import styled from '@emotion/styled'
 import Form from './Form'
 import InfoCarga from './InfoCarga'
 import Resultados from './Resultados'
-import Calcular from './Calcular'
+import CalcularFuerza from './Calcular'
 import { drawVector } from '../arrow'
 
 const Interface = ({ cargas, setCargas }) => {
   const dibujarVectores = () => {
-    drawVector()
+    // drawVector()
   }
 
   return (
@@ -30,8 +30,9 @@ const Interface = ({ cargas, setCargas }) => {
 
       />
 
-      <Calcular
+      <CalcularFuerza
         cargas={cargas}
+        setCargas={setCargas}
       />
     </Container>
   )

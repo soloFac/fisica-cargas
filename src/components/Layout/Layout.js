@@ -26,6 +26,7 @@ const Layout = ({ cargas, setCargas, vwCanvas }) => {
     Grilla(width, vh, espaciado)
   }, [width])
 
+  // Esto se debe al tamaño de la imagen, pues toma la posicion inicial en la esquina superior izquiera
   const changePosition = (e, carga) => {
     const x = e.clientX - (carga.size / 2)
     const y = e.clientY - (carga.size / 2)

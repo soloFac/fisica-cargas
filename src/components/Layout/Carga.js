@@ -11,6 +11,7 @@ const Carga = ({ carga, changePosition }) => {
       id={carga.id}
       draggable='true'
       src={imagen}
+      // Tambien se debera ejecuta otra funcion para que se calcule la fuerza y se muestren los vectores
       onDragEnd={(e) => changePosition(e, carga)}
       style={{
         width: `${size}px`,
