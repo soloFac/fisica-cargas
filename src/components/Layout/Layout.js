@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Grilla } from './Grilla'
 import Carga from './Carga'
 import './Layout.css'
-import { setCharge } from '../helpers'
+import { calcElectricFieldVector, setCharge } from '../helpers'
+import { drawVectorE } from '../arrow'
 
-const Layout = ({ cargas, setCargas, vwCanvas }) => {
+const Layout = ({ cargas, setCargas, vwCanvas, calculoE, setCampoElectrico }) => {
   const espaciado = 30
 
   const [width, setWidth] = useState(window.innerWidth * vwCanvas)
@@ -41,6 +42,14 @@ const Layout = ({ cargas, setCargas, vwCanvas }) => {
   //   setPos(x, y)
   // }
 
+  const obtenerPosicion = (e) => {
+    if (calculoE === true) {
+      const [Ex, Ey] = calcElectricFieldVector(cargas, { x: e.clientX, y: e.clientY })
+      drawVectorE({ x: e.clientX, y: e.clientY }, Ex, Ey)
+      setCampoElectrico({ Ex, Ey })
+    }
+  }
+
   return (
     <div
       id='principal'
@@ -51,6 +60,7 @@ const Layout = ({ cargas, setCargas, vwCanvas }) => {
         id='linea'
         width={width}
         height={window.innerHeight}
+        onMouseMove={(e) => obtenerPosicion(e)}
         // style={{ border: '0px solid #d3d3d3' }}
         // Cuando se ingresa una nueva carga
         // onClick={(e) => getPosition(e)}

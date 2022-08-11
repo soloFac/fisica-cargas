@@ -17,20 +17,31 @@ const Form = ({ cargas, setCargas }) => {
     signo: 'positiva',
     valor: '',
     potencia: '',
-    size: '20',
+    size: '15',
     pos: {
       x: '0',
       y: '0'
+    },
+    f: {
+      x: 0,
+      y: 0
     }
   })
 
   const { signo, valor, potencia } = carga
 
   const getData = ({ target }) => {
-    setCarga({
-      ...carga,
-      [target.name]: target.value
-    })
+    if (target.name === 'potencia' || target.name === 'valor') {
+      setCarga({
+        ...carga,
+        [target.name]: Number(target.value)
+      })
+    } else {
+      setCarga({
+        ...carga,
+        [target.name]: Number(target.value)
+      })
+    }
   }
 
   // Validar Campos vacios
@@ -60,10 +71,14 @@ const Form = ({ cargas, setCargas }) => {
       signo: 'positiva',
       valor: '',
       potencia: '',
-      size: '20',
+      size: '15',
       pos: {
         x: '0',
         y: '0'
+      },
+      f: {
+        x: 25,
+        y: 26
       }
     })
   }

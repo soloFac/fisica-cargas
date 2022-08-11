@@ -1,5 +1,12 @@
 import React from 'react'
 
+export const cleanCanvas = () => {
+  const canvas = document.querySelector('#linea')
+  const context = canvas.getContext('2d')
+
+  context.clearRect(0, 0, canvas.width, canvas.height)
+}
+
 export const Grilla = (vw, vh, espaciado) => {
   const canvas = document.querySelector('#linea')
 
