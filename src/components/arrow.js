@@ -17,7 +17,7 @@ export const drawVector = (c1, Fx1, Fy1) => { // Deberia recibir un factor de co
     // Realizo un escalamiento para que puedan verse los vectores
     const Fx = Fx1 * (10 ** 6)
     const Fy = Fy1 * (10 ** 6) * -1
-    console.log(Fx, Fy)
+    // console.log(Fx, Fy)
 
     const posX = pos0X + Fx
     const posY = pos0Y + Fy

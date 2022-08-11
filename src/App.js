@@ -8,7 +8,7 @@ import Layout from './components/Layout/Layout'
 function App () {
   // Me dice que porcentaje del ancho del vw va a ocupar el Canvas
   // el resto queda para el formulario
-  const vwCanvas = 0.7
+  const vwCanvas = 0.8
 
   const [cargas, setCargas] = useState([
     {
@@ -93,12 +93,17 @@ function App () {
         cargas[i].f.y = cargas[i].f.y + Fy
       }
     }
+
+    for (let i = 0; i < cargas.length; i++) {
+      console.log('luego de ser calculada x: ', cargas[i].f.x)
+      console.log('luego de ser calculada y: ', cargas[i].f.y)
+    }
   }
 
   const dibujarVectores = () => {
     cleanCanvas()
 
-    Grilla(window.innerWidth * 0.7, window.innerHeight, 30)
+    Grilla(window.innerWidth * vwCanvas, window.innerHeight, 30)
 
     for (let i = 0; i < cargas.length; i++) {
       drawVector(cargas[i], cargas[i].f.x, cargas[i].f.y)

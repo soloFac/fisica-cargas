@@ -26,19 +26,20 @@ const InfoCarga = ({ cargas, setCargas }) => {
 
         return (
           <CargaContainer key={carga.id}>
-            <h3>Carga: {carga.id}</h3>
+            <Titulo>Carga: n°{carga.id}</Titulo>
             <Posicion>
-              <p>x: <span>{carga.pos.x}</span> <b>i</b></p>
-              <p>y: <span>{carga.pos.y}</span> <b>j</b></p>
+              <p>Posx: <span>{carga.pos.x}px</span> <b>i</b></p>
+              <p>Posy: <span>{carga.pos.y}px</span> <b>j</b></p>
             </Posicion>
             <Fuerza>
-              <p>Fx: {Fx} 10<span>{Number(PFx)}</span></p><p>N</p>
+              <p>Fx: {Fx} <Potencia>.10<span>{Number(PFx)}</span></Potencia>i-N</p>
+
             </Fuerza>
             <Fuerza>
-              <p>Fy: {Fy} 10<span>{Number(PFy)}</span></p><p>N</p>
+              <p>Fy: {Fy} <Potencia>.10<span>{Number(PFy)}</span></Potencia>j-N</p>
             </Fuerza>
             {/* valor podria ser un styled component, ya que contiene un numero como potencia */}
-            <Carga>Carga: {carga.valor} 10<span>{carga.potencia}</span></Carga>
+            <Carga><p>Valor: {carga.valor} <Potencia>.10<span>{carga.potencia}</span></Potencia>C</p></Carga>
             <CargasImagen>
               <CargaImg
                 src={require(`./../../img/${carga.signo}.png`)}
@@ -53,6 +54,9 @@ const InfoCarga = ({ cargas, setCargas }) => {
 
 export default InfoCarga
 
+const Titulo = styled.h3`
+`
+
 const CargaImg = styled.img`
   width: 30px;
 `
@@ -61,22 +65,42 @@ const Posicion = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 5px;
-  font-size: medium;
+  font-size: large;
+  align-self: flex-start;
   p{
-    width: 40%;
+    color: #2A5781;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 400;
+    margin-left: 1em;
+    width: 70px;
+  }
+  margin-bottom: 10px;
+`
+
+const Fuerza = styled.div`
+  /* width: 100%; */
+  p{
+    display: flex;
+    flex-direction: row;
+    /* margin-top: 10px; */
+    font-size: 20px;
+    color: #2A5781;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  div{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #2A5781;
+    span{
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      color: #2A5781;
+    }
   }
 `
 
-const Fuerza = styled.p`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  font-size: 20px;
+const Potencia = styled.div`
   position: relative;
-  p{
-    width: 50%;
-  }
+  width: 40px;
+  margin-left: 2px;
   span{
     font-size: small;
     position: absolute;
@@ -84,9 +108,16 @@ const Fuerza = styled.p`
   }
 `
 
-const Carga = styled.p`
-  position: relative;
+const Carga = styled.div`
+  
   margin-top: 5px;
+  p{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+  }
 `
 
 const CargasImagen = styled.div`
@@ -103,13 +134,18 @@ const Container = styled.div`
   background-color: #D8EBFC;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `
 
 const CargaContainer = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #D8EBFC;
   color: lightcoral;
-  width: 50%;
+  width: 100%;
+  border: 5px solid #ABD7FF;
   h3{
     color: #3C3C3C;
   }

@@ -39,7 +39,7 @@ const Form = ({ cargas, setCargas }) => {
     } else {
       setCarga({
         ...carga,
-        [target.name]: Number(target.value)
+        [target.name]: target.value
       })
     }
   }
@@ -87,7 +87,7 @@ const Form = ({ cargas, setCargas }) => {
     <Formulario
       onSubmit={e => agregarCarga(e)}
     >
-      <div>
+      <Valor>
         <label>Valor</label>
         <Input
           type='number'
@@ -95,9 +95,9 @@ const Form = ({ cargas, setCargas }) => {
           value={valor}
           onChange={getData}
         />
-      </div>
+      </Valor>
 
-      <div>
+      <Magnitud>
         <label>Orden de Magnitud</label>
         <Input
           type='number'
@@ -105,9 +105,9 @@ const Form = ({ cargas, setCargas }) => {
           value={potencia}
           onChange={getData}
         />
-      </div>
+      </Magnitud>
 
-      <div>
+      <Signo>
         <label>Signo</label>
         <Select
           name='signo'
@@ -125,25 +125,70 @@ const Form = ({ cargas, setCargas }) => {
             negativa
           </option>
         </Select>
-      </div>
+      </Signo>
 
-      <button>Agregar Carga</button>
+      <Agregar>Agregar Carga</Agregar>
     </Formulario>
 
   )
 }
 
+const Agregar = styled.button`
+  position: relative;
+  display: flex;
+  align-items: center;
+  place-content: center;
+  width: 140px;
+  height: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #74ABFF;
+  border: 1px solid #00529D;
+  border-radius: 20px;
+  color: white;
+`
+
+const Valor = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const Magnitud = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const Signo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
 const Formulario = styled.form`
-  background-color: #1C4AA6;
+  border: 5px solid #00599D;
+  background-color: #00529D;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  font-size: 0.7em;
   /* width: '100%'; */
   /* display: 'flex'; */
   /* flex-direction: 'row'; */
 `
 
 const Input = styled.input`
-  padding: 8px;
-  border: 1px solid rgb(146, 146, 146);
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #D8EBFC;
+  border: 1px solid #00529D;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 5px;
+  /* border: 1px solid rgb(146, 146, 146); */
+  /* border-radius: 10px; */
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -151,7 +196,7 @@ const Input = styled.input`
 `
 const Select = styled.select`
    padding: .2em;
-  font-size: 20px;
+  font-size:  1em;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;

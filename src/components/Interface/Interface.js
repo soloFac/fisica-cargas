@@ -4,13 +4,13 @@ import styled from '@emotion/styled'
 import Form from './Form'
 import InfoCarga from './InfoCarga'
 import Resultados from './Resultados'
+import { InfoCampoElectrico } from './InfoCampoElectrico'
 
 const Interface = ({ cargas, setCargas, setVectors, calculoF, setCalculoF, calculoE, setCalculoE, campoElectrico }) => {
   useEffect(() => {
     if (calculoF === true) {
       setVectors()
-    } else {
-      // unsetVectors()
+      setCalculoE(false)
     }
   }, [calculoF, cargas])
 
@@ -20,6 +20,24 @@ const Interface = ({ cargas, setCargas, setVectors, calculoF, setCalculoF, calcu
     // Los datos del calculo de la fuerza, campo electrico y potencial
     <Container
     >
+      <Botones>
+        <CalcularFuerzaBtn
+          onClick={() => setCalculoF(true)}
+        >
+        Calcular Fuerza
+        </CalcularFuerzaBtn>
+
+        <CalcularCampo
+          onClick={() => { setCalculoE(true); setCalculoF(false) }}
+        >
+        Calcular Campo Electrico
+        </CalcularCampo>
+      </Botones>
+
+      <InfoCampoElectrico
+        campoElectrico={campoElectrico}
+      />
+
       <Form
         cargas={cargas}
         setCargas={setCargas}
@@ -30,34 +48,56 @@ const Interface = ({ cargas, setCargas, setVectors, calculoF, setCalculoF, calcu
         setVectors={setVectors}
       />
 
-      <p
-        style={{ color: 'black' }}
-      >
-        Campo Electrico:
-        Ex: {campoElectrico.Ex}
-        Ey: {campoElectrico.Ey}
-      </p>
-
-      <button
-        onClick={() => setCalculoF(true)}
-      >
-        Calcular Fuerza
-      </button>
-
-      <button
-        onClick={() => setCalculoE(true)}
-      >
-        Calcular Campo Electrico
-      </button>
-
     </Container>
   )
 }
 
+const Botones = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1C4AA6;
+  border: 5px solid #173E8C;
+`
+
+const CalcularFuerzaBtn = styled.button`
+  position: relative;
+  display: flex;
+  align-items: center;
+  place-content: center;
+  width: 150px;
+  height: 45px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #74ABFF;
+  border: 1px solid #00529D;
+  border-radius: 30px;
+  color: white;
+  font-size: 15px;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.8);
+  `
+
+const CalcularCampo = styled.button`
+  position: relative;
+  display: flex;
+  align-items: center;
+  place-content: center;
+  width: 160px;
+  height: 55px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #74ABFF;
+  border: 1px solid #00529D;
+  border-radius: 30px;
+  color: white;
+  font-size: 15px;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.8);
+`
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 35vw;
+  width: 20vw;
   height: 100vh;
   background-color: beige;
 `

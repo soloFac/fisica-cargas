@@ -108,7 +108,7 @@ const calcMagnitudCampo = (c, r) => {
 export const calcElectricFieldVector = (cargas, d) => {
   cleanCanvas()
 
-  Grilla(window.innerWidth * 0.7, window.innerHeight, 30)
+  Grilla(window.innerWidth * 0.8, window.innerHeight, 30)
 
   // const { x, y } = d
   let ExAux = 0
