@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { getScientificNot } from './helpers'
 
 // Dibujar un triangulo
 export const drawVector = (c1, Fx1, Fy1) => { // Deberia recibir un factor de conversion para normalizar los vectores
@@ -14,10 +15,8 @@ export const drawVector = (c1, Fx1, Fy1) => { // Deberia recibir un factor de co
     const pos0X = c1.pos.x + 7.5
     const pos0Y = c1.pos.y + 7.5
 
-    // Realizo un escalamiento para que puedan verse los vectores
     const Fx = Fx1 * (10 ** 6)
     const Fy = Fy1 * (10 ** 6) * -1
-    // console.log(Fx, Fy)
 
     const posX = pos0X + Fx
     const posY = pos0Y + Fy

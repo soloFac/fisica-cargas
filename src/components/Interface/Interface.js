@@ -14,6 +14,8 @@ const Interface = ({ cargas, setCargas, setVectors, calculoF, setCalculoF, calcu
     }
   }, [calculoF, cargas])
 
+  const [showForm, setShowForm] = useState(false)
+
   return (
     // Esta interfaz va a contener el formulario,
     // Todas las cajas con los datos de las cargas
@@ -21,27 +23,44 @@ const Interface = ({ cargas, setCargas, setVectors, calculoF, setCalculoF, calcu
     <Container
     >
       <Botones>
-        <CalcularFuerzaBtn
-          onClick={() => setCalculoF(true)}
-        >
-        Calcular Fuerza
-        </CalcularFuerzaBtn>
 
-        <CalcularCampo
-          onClick={() => { setCalculoE(true); setCalculoF(false) }}
-        >
-        Calcular Campo Electrico
-        </CalcularCampo>
+        { (calculoF === true)
+          ? <>
+            <CalcularCampo
+              onClick={() => { setCalculoE(true); setCalculoF(false) }}
+            >
+          Calcular Campo Electrico
+            </CalcularCampo>
+
+          </>
+          : <CalcularFuerzaBtn
+            onClick={() => setCalculoF(true)}
+          >
+        Calcular Fuerza
+          </CalcularFuerzaBtn>}
       </Botones>
 
-      <InfoCampoElectrico
-        campoElectrico={campoElectrico}
-      />
+      { (calculoF === false && calculoE === true)
+        ? <InfoCampoElectrico
+          campoElectrico={campoElectrico}
+        />
+        : null}
 
-      <Form
-        cargas={cargas}
-        setCargas={setCargas}
-      />
+      <ContainerForm>
+        {showForm
+          ? <Form
+            cargas={cargas}
+            setCargas={setCargas}
+            setShowForm={setShowForm}
+          />
+          : <AgregarCarga
+            onClick={() => setShowForm(true)}
+          >
+          Agregar Carga
+          </AgregarCarga>
+        }
+      </ContainerForm>
+
       <InfoCarga
         cargas={cargas}
         setCargas={setCargas}
@@ -51,6 +70,29 @@ const Interface = ({ cargas, setCargas, setVectors, calculoF, setCalculoF, calcu
     </Container>
   )
 }
+
+const ContainerForm = styled.div`
+  display: flex;
+  align-items: center;
+  place-content: center;
+  background-color: #00529D;
+`
+
+const AgregarCarga = styled.button`
+  position: relative;
+  display: flex;
+  align-items: center;
+  place-content: center;
+  width: 140px;
+  height: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #74ABFF;
+  border: 1px solid #00529D;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 4px 4px 3px black;
+`
 
 const Botones = styled.div`
   display: flex;

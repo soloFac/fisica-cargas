@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 
-const Form = ({ cargas, setCargas }) => {
+const Form = ({ cargas, setCargas, setShowForm }) => {
   const getLastId = () => {
     if (cargas.length === 0) {
       return 1
@@ -128,10 +128,29 @@ const Form = ({ cargas, setCargas }) => {
       </Signo>
 
       <Agregar>Agregar Carga</Agregar>
+      <Ocultar
+        onClick={() => setShowForm(false)}
+      >Ocultar Formulario</Ocultar>
     </Formulario>
 
   )
 }
+
+const Ocultar = styled.button`
+  position: relative;
+  display: flex;
+  align-items: center;
+  place-content: center;
+  width: 140px;
+  height: 25px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background: #74ABFF;
+  border: 1px solid #00529D;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 4px 4px 3px black;
+`
 
 const Agregar = styled.button`
   position: relative;

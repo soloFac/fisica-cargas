@@ -94,10 +94,12 @@ function App () {
       }
     }
 
-    for (let i = 0; i < cargas.length; i++) {
-      console.log('luego de ser calculada x: ', cargas[i].f.x)
-      console.log('luego de ser calculada y: ', cargas[i].f.y)
-    }
+    // for (let i = 0; i < cargas.length; i++) {
+    //   console.log('luego de ser calculada x: ', cargas[i].f.x)
+    //   console.log('luego de ser calculada y: ', cargas[i].f.y)
+    // }
+
+    // setCargas([])
   }
 
   const dibujarVectores = () => {

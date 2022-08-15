@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 import { getScientificNot, setCharge } from '../helpers'
 
 // Este sera un componente que contendra la informacion de las cargas para ser mostrada en Interface
-const InfoCarga = ({ cargas, setCargas }) => {
+const InfoCarga = ({ cargas, setCargas, calculoF }) => {
   // Cuando se realiza click sobre la carga, le cambio el signo
   const changeSign = (carga) => {
     // Si no esta activada la cambio
@@ -17,12 +17,19 @@ const InfoCarga = ({ cargas, setCargas }) => {
     }
   }
 
+  useEffect(() => {
+    setCargas(cargas)
+    console.log('Se actualizo el state')
+  }, [calculoF])
+
   return (
     <Container>
       {cargas.map(carga => {
         console.log(carga.pos)
+        console.log('Luego de que se actualizo el state')
         const [Fx, PFx] = getScientificNot(carga.f.x)
         const [Fy, PFy] = getScientificNot(carga.f.y)
+        console.log('Fx, Fy: ', Fx, Fy)
 
         return (
           <CargaContainer key={carga.id}>
@@ -72,7 +79,7 @@ const Posicion = styled.div`
     font-family: 'Courier New', Courier, monospace;
     font-weight: 400;
     margin-left: 1em;
-    width: 70px;
+    width: 85px;
   }
   margin-bottom: 10px;
 `
@@ -130,7 +137,7 @@ const CargasImagen = styled.div`
 const Container = styled.div`
   width: 100%;
   overflow-y: scroll;
-  height: 60vh;
+  height: 85vh;
   background-color: #D8EBFC;
   display: flex;
   flex-direction: row;
