@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { getScientificNot, setCharge } from '../helpers'
 
 // Este sera un componente que contendra la informacion de las cargas para ser mostrada en Interface
-const InfoCarga = ({ cargas, setCargas, calculoF }) => {
+const InfoCarga = ({ cargas, setCargas, cambio, setCambio }) => {
   // Cuando se realiza click sobre la carga, le cambio el signo
   const changeSign = (carga) => {
     // Si no esta activada la cambio
@@ -15,21 +15,30 @@ const InfoCarga = ({ cargas, setCargas, calculoF }) => {
       carga.signo = 'positiva'
       setCharge(carga, setCargas)
     }
+    setCambio(cambio + 1)
   }
 
-  useEffect(() => {
-    setCargas(cargas)
-    console.log('Se actualizo el state')
-  }, [calculoF])
+  // const setVectors = () => {
+  //   console.log('ingreso a setVectors')
+  //   console.log('calculoF :', calculoF)
+  //   if (calculoF) {
+  //     console.log('calculoF es verdadero')
+  //     calcularFuerzas()
+  //     dibujarVectores()
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   setCargas(cargas)
+  //   console.log('Se actualizo el state')
+  // }, [calculoF])
 
   return (
     <Container>
       {cargas.map(carga => {
         console.log(carga.pos)
-        console.log('Luego de que se actualizo el state')
         const [Fx, PFx] = getScientificNot(carga.f.x)
         const [Fy, PFy] = getScientificNot(carga.f.y)
-        console.log('Fx, Fy: ', Fx, Fy)
 
         return (
           <CargaContainer key={carga.id}>
@@ -50,7 +59,7 @@ const InfoCarga = ({ cargas, setCargas, calculoF }) => {
             <CargasImagen>
               <CargaImg
                 src={require(`./../../img/${carga.signo}.png`)}
-                onClick={() => changeSign(carga)}
+                onClick={() => { changeSign(carga) }}
               />
             </CargasImagen>
           </CargaContainer>)

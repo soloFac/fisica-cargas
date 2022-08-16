@@ -74,33 +74,63 @@ function App () {
   const [campoElectrico, setCampoElectrico] = useState({ Ex: 0, Ey: 0 })
 
   const calcularFuerza = () => {
-    // Primero reinicializo los valores de la Fuerza en 0
+    let carga
+    const cargasArray = []
+
     for (let i = 0; i < cargas.length; i++) {
-      cargas[i].f.x = 0
-      cargas[i].f.y = 0
+      carga = JSON.parse(JSON.stringify(cargas[i]))
+      carga.f.x = 0
+      carga.f.y = 0
+      cargasArray.push(carga)
     }
 
-    // Voy a crear una copia por valor del arreglo
-    for (let i = 0; i < cargas.length; i++) {
+    for (let i = 0; i < cargasArray.length; i++) {
       // Declaro un par de variables auxiliares para realizar la sumatoria
-      for (let j = i + 1; j < cargas.length; j++) {
-        const [Fx, Fy] = calcVectoresF(cargas[i], cargas[j])
+      for (let j = i + 1; j < cargasArray.length; j++) {
+        const [Fx, Fy] = calcVectoresF(cargasArray[i], cargasArray[j])
 
-        cargas[j].f.x = cargas[j].f.x + (Fx * -1)
-        cargas[j].f.y = cargas[j].f.y + (Fy * -1)
+        cargasArray[j].f.x = cargasArray[j].f.x + (Fx * -1)
+        cargasArray[j].f.y = cargasArray[j].f.y + (Fy * -1)
 
-        cargas[i].f.x = cargas[i].f.x + Fx
-        cargas[i].f.y = cargas[i].f.y + Fy
+        cargasArray[i].f.x = cargasArray[i].f.x + Fx
+        cargasArray[i].f.y = cargasArray[i].f.y + Fy
       }
     }
 
-    // for (let i = 0; i < cargas.length; i++) {
-    //   console.log('luego de ser calculada x: ', cargas[i].f.x)
-    //   console.log('luego de ser calculada y: ', cargas[i].f.y)
-    // }
-
-    // setCargas([])
+    setCargas(cargasArray)
   }
+
+  // const calcularFuerza = () => {
+  //   const cargasAux = cargas
+  //   // Primero reinicializo los valores de la Fuerza en 0
+  //   for (let i = 0; i < cargas.length; i++) {
+  //     cargasAux[i].f.x = 0
+  //     cargasAux[i].f.y = 0
+  //   }
+
+  //   // setCargas(cargasAux)
+
+  //   // Voy a crear una copia por valor del arreglo
+  //   for (let i = 0; i < cargas.length; i++) {
+  //     // Declaro un par de variables auxiliares para realizar la sumatoria
+  //     for (let j = i + 1; j < cargas.length; j++) {
+  //       const [Fx, Fy] = calcVectoresF(cargas[i], cargas[j])
+
+  //       cargasAux[j].f.x = cargasAux[j].f.x + (Fx * -1)
+  //       cargasAux[j].f.y = cargasAux[j].f.y + (Fy * -1)
+
+  //       cargasAux[i].f.x = cargasAux[i].f.x + Fx
+  //       cargasAux[i].f.y = cargasAux[i].f.y + Fy
+  //     }
+  //   }
+
+  //   // for (let i = 0; i < cargas.length; i++) {
+  //   //   console.log('luego de ser calculada x: ', cargas[i].f.x)
+  //   //   console.log('luego de ser calculada y: ', cargas[i].f.y)
+  //   // }
+
+  //   // setCargas(cargasAux)
+  // }
 
   const dibujarVectores = () => {
     cleanCanvas()
@@ -111,6 +141,10 @@ function App () {
       drawVector(cargas[i], cargas[i].f.x, cargas[i].f.y)
     }
   }
+
+  // useEffect(() => {
+  //   setVectorsF()
+  // }, [cargas])
 
   const setVectorsF = () => {
     calcularFuerza()
@@ -136,11 +170,14 @@ function App () {
         vwCanvas={vwCanvas}
         calculoE={calculoE}
         setCampoElectrico={setCampoElectrico}
+        calculoF={calculoF}
+        calcularFuerza={calcularFuerza}
       />
       <Interface
         cargas={cargas}
         setCargas={setCargas}
-        setVectors={setVectorsF}
+        dibujarVectores={dibujarVectores}
+        calcularFuerzas={calcularFuerza}
         // Para saber si calcular la Fuerza
         calculoF={calculoF}
         setCalculoF={setCalculoF}

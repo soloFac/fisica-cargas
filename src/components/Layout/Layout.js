@@ -5,7 +5,7 @@ import './Layout.css'
 import { calcElectricFieldVector, setCharge } from '../helpers'
 import { drawVectorE } from '../arrow'
 
-const Layout = ({ cargas, setCargas, vwCanvas, calculoE, setCampoElectrico }) => {
+const Layout = ({ cargas, setCargas, vwCanvas, calculoE, setCampoElectrico, calculoF, calcularFuerza }) => {
   const espaciado = 30
 
   const [width, setWidth] = useState(window.innerWidth * vwCanvas)
@@ -33,6 +33,12 @@ const Layout = ({ cargas, setCargas, vwCanvas, calculoE, setCampoElectrico }) =>
     const y = e.clientY - (carga.size / 2)
     setPos(carga, x, y)
     // console.log(carga.signo, x, y)
+  }
+
+  const calculateVectors = () => {
+    if (calculoF) {
+      calcularFuerza()
+    }
   }
   // Obitene la posicion actual de una carga
   // Se lo utiliza para cuando se ingresa una nueva carga
@@ -70,6 +76,7 @@ const Layout = ({ cargas, setCargas, vwCanvas, calculoE, setCampoElectrico }) =>
           key={carga.id}
           carga={carga}
           changePosition={changePosition}
+          calculateVectors={calculateVectors}
         />)}
     </div>
   )

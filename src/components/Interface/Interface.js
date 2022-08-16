@@ -6,11 +6,21 @@ import InfoCarga from './InfoCarga'
 import Resultados from './Resultados'
 import { InfoCampoElectrico } from './InfoCampoElectrico'
 
-const Interface = ({ cargas, setCargas, setVectors, calculoF, setCalculoF, calculoE, setCalculoE, campoElectrico }) => {
+const Interface = ({ cargas, setCargas, dibujarVectores, calcularFuerzas, calculoF, setCalculoF, calculoE, setCalculoE, campoElectrico }) => {
+  const [cambio, setCambio] = useState(0)
+
   useEffect(() => {
     if (calculoF === true) {
-      setVectors()
       setCalculoE(false)
+      calcularFuerzas()
+      dibujarVectores()
+    }
+  }, [calculoF, cambio])
+
+  useEffect(() => {
+    if (calculoF === true) {
+      setCalculoE(false)
+      dibujarVectores()
     }
   }, [calculoF, cargas])
 
@@ -52,6 +62,8 @@ const Interface = ({ cargas, setCargas, setVectors, calculoF, setCalculoF, calcu
             cargas={cargas}
             setCargas={setCargas}
             setShowForm={setShowForm}
+            cambio={cambio}
+            setCambio={setCambio}
           />
           : <AgregarCarga
             onClick={() => setShowForm(true)}
@@ -64,7 +76,8 @@ const Interface = ({ cargas, setCargas, setVectors, calculoF, setCalculoF, calcu
       <InfoCarga
         cargas={cargas}
         setCargas={setCargas}
-        setVectors={setVectors}
+        cambio={cambio}
+        setCambio={setCambio}
       />
 
     </Container>

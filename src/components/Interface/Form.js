@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 
-const Form = ({ cargas, setCargas, setShowForm }) => {
+const Form = ({ cargas, setCargas, setShowForm, cambio, setCambio }) => {
   const getLastId = () => {
     if (cargas.length === 0) {
       return 1
@@ -44,9 +44,15 @@ const Form = ({ cargas, setCargas, setShowForm }) => {
     }
   }
 
+  const setVectors = () => {
+
+  }
+
   // Validar Campos vacios
   const agregarCarga = e => {
     e.preventDefault()
+
+    setCambio(cambio + 1)
 
     // carga.id = uuid()
     carga.id = getLastId()
