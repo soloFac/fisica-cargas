@@ -16,7 +16,7 @@ const Form = ({ cargas, setCargas, setShowForm, cambio, setCambio }) => {
     id: '',
     signo: 'positiva',
     valor: '',
-    potencia: '',
+    potencia: -6,
     size: '15',
     pos: {
       x: '0',
@@ -59,6 +59,10 @@ const Form = ({ cargas, setCargas, setShowForm, cambio, setCambio }) => {
     if (carga.id === '') console.log('El id de la carga no puede estar vacio. Comuniquese con el administrador')
 
     if (carga.valor === '' || carga.potencia === '' || carga.signo === '') {
+      if (carga.valor <= 0 || carga.valor > 999) {
+        alert('El valor de la carga no puede ser <= 0 ó > 999')
+        return null
+      }
       alert('Ningun campo puede estar vacio')
       return null
     }
@@ -76,7 +80,7 @@ const Form = ({ cargas, setCargas, setShowForm, cambio, setCambio }) => {
       id: '',
       signo: 'positiva',
       valor: '',
-      potencia: '',
+      potencia: -6,
       size: '15',
       pos: {
         x: '0',
@@ -95,15 +99,17 @@ const Form = ({ cargas, setCargas, setShowForm, cambio, setCambio }) => {
     >
       <Valor>
         <label>Valor</label>
-        <Input
-          type='number'
-          name='valor'
-          value={valor}
-          onChange={getData}
-        />
+        <div>
+          <Input
+            type='number'
+            name='valor'
+            value={valor}
+            onChange={getData}
+          />
+        </div>
       </Valor>
 
-      <Magnitud>
+      {/* <Magnitud>
         <label>Orden de Magnitud</label>
         <Input
           type='number'
@@ -111,7 +117,7 @@ const Form = ({ cargas, setCargas, setShowForm, cambio, setCambio }) => {
           value={potencia}
           onChange={getData}
         />
-      </Magnitud>
+      </Magnitud> */}
 
       <Signo>
         <label>Signo</label>
@@ -177,6 +183,15 @@ const Valor = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  div::after{
+    content: 'μC';
+    margin-left: 4px;
+  }
 `
 
 const Magnitud = styled.div`
@@ -206,18 +221,21 @@ const Formulario = styled.form`
 const Input = styled.input`
   display: flex;
   flex-direction: column;
+  width: 50%;
   align-items: center;
   background: #D8EBFC;
   border: 1px solid #00529D;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   padding: 5px;
+  margin-left: 20%;
   /* border: 1px solid rgb(146, 146, 146); */
   /* border-radius: 10px; */
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+
 `
 const Select = styled.select`
    padding: .2em;

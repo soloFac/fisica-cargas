@@ -16,7 +16,7 @@ export const InfoCampoElectrico = ({ campoElectrico, position }) => {
       </Position>
       <Vectores>
         <p>Ex: {Ex} <Potencia>.10<span>{Number(PEx)}</span></Potencia>N/C</p>
-        <p>Ey: {Ey} <Potencia>.10<span>{Number(PEy)}</span></Potencia>N/C</p>
+        <p>Ey: {Ey * -1} <Potencia>.10<span>{Number(PEy)}</span></Potencia>N/C</p>
       </Vectores>
     </CampoElectricoContainer>
   )

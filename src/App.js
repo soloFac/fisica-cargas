@@ -79,6 +79,7 @@ function App () {
     let carga
     const cargasArray = []
 
+    // Reset the value of the charges before work out
     for (let i = 0; i < cargas.length; i++) {
       carga = JSON.parse(JSON.stringify(cargas[i]))
       carga.f.x = 0
