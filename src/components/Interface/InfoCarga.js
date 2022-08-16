@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
-import { getScientificNot, setCharge } from '../helpers'
+import { deleteCharge, getScientificNot, setCharge } from '../helpers'
 
 // Este sera un componente que contendra la informacion de las cargas para ser mostrada en Interface
 const InfoCarga = ({ cargas, setCargas, cambio, setCambio }) => {
@@ -18,20 +18,12 @@ const InfoCarga = ({ cargas, setCargas, cambio, setCambio }) => {
     setCambio(cambio + 1)
   }
 
-  // const setVectors = () => {
-  //   console.log('ingreso a setVectors')
-  //   console.log('calculoF :', calculoF)
-  //   if (calculoF) {
-  //     console.log('calculoF es verdadero')
-  //     calcularFuerzas()
-  //     dibujarVectores()
-  //   }
-  // }
+  const eliminarCarga = (id) => {
+    deleteCharge(id, setCargas)
+    setCambio(cambio + 1)
+  }
 
-  // useEffect(() => {
-  //   setCargas(cargas)
-  //   console.log('Se actualizo el state')
-  // }, [calculoF])
+  const imagenUrl = require('../../img/delete-icon.png')
 
   return (
     <Container>
@@ -62,6 +54,10 @@ const InfoCarga = ({ cargas, setCargas, cambio, setCambio }) => {
                 onClick={() => { changeSign(carga) }}
               />
             </CargasImagen>
+            <EliminarCarga
+              src={imagenUrl}
+              onClick={() => eliminarCarga(carga.id)}
+            />
           </CargaContainer>)
       })}
     </Container>
@@ -69,6 +65,14 @@ const InfoCarga = ({ cargas, setCargas, cambio, setCambio }) => {
 }
 
 export default InfoCarga
+
+const EliminarCarga = styled.img`
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 20px;
+  cursor: pointer;
+`
 
 const Titulo = styled.h3`
 `

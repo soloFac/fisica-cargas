@@ -2,13 +2,18 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { getScientificNot } from '../helpers'
 
-export const InfoCampoElectrico = ({ campoElectrico }) => {
+export const InfoCampoElectrico = ({ campoElectrico, position }) => {
   const [Ex, PEx] = getScientificNot(campoElectrico.Ex)
   const [Ey, PEy] = getScientificNot(campoElectrico.Ey)
+  const { x, y } = position
   return (
     <CampoElectricoContainer
     >
       <p>Campo Electrico:</p>
+      <Position>
+        <p>x: {x} px</p>
+        <p>y: {y} px</p>
+      </Position>
       <Vectores>
         <p>Ex: {Ex} <Potencia>.10<span>{Number(PEx)}</span></Potencia>N/C</p>
         <p>Ey: {Ey} <Potencia>.10<span>{Number(PEy)}</span></Potencia>N/C</p>
@@ -16,6 +21,11 @@ export const InfoCampoElectrico = ({ campoElectrico }) => {
     </CampoElectricoContainer>
   )
 }
+
+const Position = styled.div`
+  display: flex;
+  flex-direction: row;
+`
 
 const Potencia = styled.div`
   position: relative;

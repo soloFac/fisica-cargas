@@ -93,6 +93,14 @@ export const setCharge = (carga, setCargas) => {
   console.log(carga)
 }
 
+export const deleteCharge = (id, setCargas) => {
+  setCargas((prevState) => {
+    const cargas = prevState.filter(c => ((c.id !== id) ? c : null))
+    cargas.sort(ordernarId)
+    return (cargas)
+  })
+}
+
 // POSICIONO EL ELEMENTO EN EL CENTRO - Sin utilización ACTUALMENTE
 export const centerElement = (element, centerX, centerY) => {
   element.style.left = centerX + 'px'

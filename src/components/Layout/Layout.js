@@ -5,7 +5,7 @@ import './Layout.css'
 import { calcElectricFieldVector, setCharge } from '../helpers'
 import { drawVectorE } from '../arrow'
 
-const Layout = ({ cargas, setCargas, vwCanvas, calculoE, setCampoElectrico, calculoF, calcularFuerza }) => {
+const Layout = ({ cargas, setCargas, vwCanvas, calculoE, setCampoElectrico, calculoF, calcularFuerza, setPosition }) => {
   const espaciado = 30
 
   const [width, setWidth] = useState(window.innerWidth * vwCanvas)
@@ -51,6 +51,7 @@ const Layout = ({ cargas, setCargas, vwCanvas, calculoE, setCampoElectrico, calc
   const obtenerPosicion = (e) => {
     if (calculoE === true) {
       const [Ex, Ey] = calcElectricFieldVector(cargas, { x: e.clientX, y: e.clientY })
+      setPosition({ x: e.clientX, y: e.clientY })
       drawVectorE({ x: e.clientX, y: e.clientY }, Ex, Ey)
       setCampoElectrico({ Ex, Ey })
     }

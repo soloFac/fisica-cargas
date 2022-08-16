@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { drawVector } from './components/arrow'
-import { calcVectoresF, calcElectricFieldVector } from './components/helpers'
+import ordernarId, { calcVectoresF, calcElectricFieldVector } from './components/helpers'
 import Interface from './components/Interface/Interface'
 import { cleanCanvas, Grilla } from './components/Layout/Grilla'
 import Layout from './components/Layout/Layout'
@@ -68,6 +68,8 @@ function App () {
     // }
   ])
 
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+
   const [calculoF, setCalculoF] = useState(false)
   const [calculoE, setCalculoE] = useState(false)
 
@@ -100,38 +102,6 @@ function App () {
     setCargas(cargasArray)
   }
 
-  // const calcularFuerza = () => {
-  //   const cargasAux = cargas
-  //   // Primero reinicializo los valores de la Fuerza en 0
-  //   for (let i = 0; i < cargas.length; i++) {
-  //     cargasAux[i].f.x = 0
-  //     cargasAux[i].f.y = 0
-  //   }
-
-  //   // setCargas(cargasAux)
-
-  //   // Voy a crear una copia por valor del arreglo
-  //   for (let i = 0; i < cargas.length; i++) {
-  //     // Declaro un par de variables auxiliares para realizar la sumatoria
-  //     for (let j = i + 1; j < cargas.length; j++) {
-  //       const [Fx, Fy] = calcVectoresF(cargas[i], cargas[j])
-
-  //       cargasAux[j].f.x = cargasAux[j].f.x + (Fx * -1)
-  //       cargasAux[j].f.y = cargasAux[j].f.y + (Fy * -1)
-
-  //       cargasAux[i].f.x = cargasAux[i].f.x + Fx
-  //       cargasAux[i].f.y = cargasAux[i].f.y + Fy
-  //     }
-  //   }
-
-  //   // for (let i = 0; i < cargas.length; i++) {
-  //   //   console.log('luego de ser calculada x: ', cargas[i].f.x)
-  //   //   console.log('luego de ser calculada y: ', cargas[i].f.y)
-  //   // }
-
-  //   // setCargas(cargasAux)
-  // }
-
   const dibujarVectores = () => {
     cleanCanvas()
 
@@ -141,21 +111,6 @@ function App () {
       drawVector(cargas[i], cargas[i].f.x, cargas[i].f.y)
     }
   }
-
-  // useEffect(() => {
-  //   setVectorsF()
-  // }, [cargas])
-
-  const setVectorsF = () => {
-    calcularFuerza()
-    dibujarVectores()
-  }
-
-  // const setVectorE = (d) => {
-  //   // calcularFuerza()
-  //   drawElectricFieldVector(d)
-  //   // dibujarVectores()
-  // }
 
   return (
     <section
@@ -172,6 +127,7 @@ function App () {
         setCampoElectrico={setCampoElectrico}
         calculoF={calculoF}
         calcularFuerza={calcularFuerza}
+        setPosition={setPosition}
       />
       <Interface
         cargas={cargas}
@@ -186,6 +142,7 @@ function App () {
         setCalculoE={setCalculoE}
         // Campo Electrico
         campoElectrico={campoElectrico}
+        position={position}
       />
     </section>
   )

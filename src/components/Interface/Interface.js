@@ -6,7 +6,7 @@ import InfoCarga from './InfoCarga'
 import Resultados from './Resultados'
 import { InfoCampoElectrico } from './InfoCampoElectrico'
 
-const Interface = ({ cargas, setCargas, dibujarVectores, calcularFuerzas, calculoF, setCalculoF, calculoE, setCalculoE, campoElectrico }) => {
+const Interface = ({ cargas, setCargas, dibujarVectores, calcularFuerzas, calculoF, setCalculoF, calculoE, setCalculoE, campoElectrico, position }) => {
   const [cambio, setCambio] = useState(0)
 
   useEffect(() => {
@@ -53,6 +53,7 @@ const Interface = ({ cargas, setCargas, dibujarVectores, calcularFuerzas, calcul
       { (calculoF === false && calculoE === true)
         ? <InfoCampoElectrico
           campoElectrico={campoElectrico}
+          position={position}
         />
         : null}
 
